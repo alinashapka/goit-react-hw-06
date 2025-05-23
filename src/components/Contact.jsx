@@ -1,9 +1,14 @@
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../redux/contactsSlice";
+
 import clsx from "clsx";
 import css from "./Contact.module.css";
 
-export default function Contact({ contact, onDelete }) {
+export default function Contact({ contact }) {
+    const dispatch = useDispatch();
+
     const handleDelete = () => {
-        onDelete(contact);
+        dispatch(deleteContact(contact.id));
     }
     return (
             <div className={clsx(css.wrapper)}>
@@ -14,4 +19,4 @@ export default function Contact({ contact, onDelete }) {
             <button className={clsx(css.button)} onClick={handleDelete}>Delete</button>
             </div>
     );
-}
+};
